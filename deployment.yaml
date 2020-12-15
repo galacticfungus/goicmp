@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: go-icmp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: goicmp
+  template:
+    metadata:
+      labels:
+        app: goicmp
+    spec:
+      containers:
+      - name: go-icmp-container
+        image: rdent/goicmp
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 8080
